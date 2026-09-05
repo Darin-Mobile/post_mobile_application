@@ -31,6 +31,25 @@ class HomeView extends GetView<HomeController> {
       backgroundColor: Colors.white,
       appBar: AppbarCustomWidget(
         title: "Home",
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            tooltip: 'Logout',
+            onPressed: () {
+              Get.defaultDialog(
+                title: 'Logout',
+                middleText: 'Do you want to logout?',
+                textCancel: 'Cancel',
+                textConfirm: 'Logout',
+                confirmTextColor: Colors.white,
+                onConfirm: () {
+                  Get.back();
+                  controller.logout();
+                },
+              );
+            },
+          ),
+        ],
       ),
     );
   }

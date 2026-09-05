@@ -11,7 +11,28 @@ class DashboardView extends GetView<DashboardController> {
   Widget build(BuildContext context) {
     return Obx(() {
       return Scaffold(
-        appBar: AppbarCustomWidget(title: "Dashboard"),
+        appBar: AppbarCustomWidget(
+          title: "Dashboard",
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.logout),
+              tooltip: 'Logout',
+              onPressed: () {
+                Get.defaultDialog(
+                  title: 'Logout',
+                  middleText: 'Do you want to logout?',
+                  textCancel: 'Cancel',
+                  textConfirm: 'Logout',
+                  confirmTextColor: Colors.white,
+                  onConfirm: () {
+                    Get.back();
+                    controller.logout();
+                  },
+                );
+              },
+            ),
+          ],
+        ),
         body: Container(
           padding: EdgeInsets.all(10),
           child: GridView.builder(
